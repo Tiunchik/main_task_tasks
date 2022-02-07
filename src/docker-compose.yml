@@ -1,0 +1,11 @@
+version: '3.5'
+
+services:
+  psql:
+    container_name: tasks-postgress
+    image: postgres:13.5-alpine
+    environment:
+      POSTGRES_USER: psql
+      POSTGRES_PASSWORD: psql
+    ports:
+      - "5432:5432"
