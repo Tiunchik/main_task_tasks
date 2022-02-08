@@ -6,7 +6,7 @@ spring:
 
 
   liquibase:
-    enabled: false
+    enabled: true
     url: "jdbc:postgresql://localhost:5432/postgres"
     user: psql
     password: psql

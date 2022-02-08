@@ -22,7 +22,7 @@ class ArtemisConfiguration(
     }
 
     @Bean
-    fun artemisJmsTemplate(
+    fun artemisQueueJmsTemplate(
         @Qualifier("artemisConnectionFactory") factory: ActiveMQConnectionFactory
     ): JmsTemplate {
         return JmsTemplate().apply {
@@ -31,10 +31,23 @@ class ArtemisConfiguration(
     }
 
     @Bean
+    fun artemisTopicJmsTemplate(
+        @Qualifier("artemisConnectionFactory") factory: ActiveMQConnectionFactory
+    ): JmsTemplate {
+        return JmsTemplate().apply {
+            connectionFactory = factory
+            isPubSubDomain = true
+        }
+    }
+
+    @Bean
     fun artemisJmsListenerContainerFactory(
         @Qualifier("artemisConnectionFactory") factory: ActiveMQConnectionFactory
     ): DefaultJmsListenerContainerFactory {
         return DefaultJmsListenerContainerFactory().apply {
+            setSubscriptionDurable(true)
+            setSubscriptionShared(true)
+            setPubSubDomain(true)
             setConnectionFactory(factory)
             setConcurrency(props.concurrency)
         }

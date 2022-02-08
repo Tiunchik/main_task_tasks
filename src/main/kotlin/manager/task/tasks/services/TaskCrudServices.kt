@@ -1,7 +1,6 @@
 package manager.task.tasks.services
 
 import manager.task.tasks.domains.Task
-import manager.task.tasks.jms.JmsSender
 import manager.task.tasks.repositories.TasksRepository
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Flux
@@ -11,12 +10,13 @@ const val QUEUE_NAME = "INT-MY-ADDRESS"
 @Service
 class TaskCrudServices(
     private val taskRepository: TasksRepository,
-    private val jmsSender: JmsSender
+    private val jmsSenderService: JmsSenderService
 ) {
 
     fun getAllTasks(): Flux<Task> {
         return taskRepository.findAll().also {
-            jmsSender.sendMessage(QUEUE_NAME, "Message send")
+            jmsSenderService.sendMessage(QUEUE_NAME, "Message send", mapOf("myHeader" to "any"))
+            jmsSenderService.sendMessage(QUEUE_NAME, "Message send", mapOf("myHeader" to "none"))
         }
     }
 
