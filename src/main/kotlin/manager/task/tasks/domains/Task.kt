@@ -10,9 +10,6 @@ const val STANDART_DAY_PENDING = 5L;
 data class Task (
     @Id
     var id: Long = 0,
-    var name: String,
-    var description: String = "",
-    var creationDate: LocalDateTime = LocalDateTime.now(),
-    var expiredDate: LocalDateTime = LocalDateTime.now().plusDays(STANDART_DAY_PENDING),
-    var finishDate: LocalDateTime? = null
+    var name: String = "none",
+    var description: String = "none",
 )

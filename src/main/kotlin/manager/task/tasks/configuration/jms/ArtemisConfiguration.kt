@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.jms.config.DefaultJmsListenerContainerFactory
 import org.springframework.jms.core.JmsTemplate
+import org.springframework.jms.support.converter.MessageConverter
 
 @Configuration
 class ArtemisConfiguration(
@@ -23,32 +24,39 @@ class ArtemisConfiguration(
 
     @Bean
     fun artemisQueueJmsTemplate(
-        @Qualifier("artemisConnectionFactory") factory: ActiveMQConnectionFactory
+        @Qualifier("artemisConnectionFactory") factory: ActiveMQConnectionFactory,
+        @Qualifier("jacksonMessageConverter") converter: MessageConverter
     ): JmsTemplate {
         return JmsTemplate().apply {
             connectionFactory = factory
+            messageConverter = converter
         }
     }
 
     @Bean
     fun artemisTopicJmsTemplate(
-        @Qualifier("artemisConnectionFactory") factory: ActiveMQConnectionFactory
+        @Qualifier("artemisConnectionFactory") factory: ActiveMQConnectionFactory,
+        @Qualifier("jacksonMessageConverter") converter: MessageConverter
     ): JmsTemplate {
         return JmsTemplate().apply {
             connectionFactory = factory
+            connectionFactory = factory
+            messageConverter = converter
             isPubSubDomain = true
         }
     }
 
     @Bean
     fun artemisJmsListenerContainerFactory(
-        @Qualifier("artemisConnectionFactory") factory: ActiveMQConnectionFactory
+        @Qualifier("artemisConnectionFactory") factory: ActiveMQConnectionFactory,
+        @Qualifier("jacksonMessageConverter") converter: MessageConverter
     ): DefaultJmsListenerContainerFactory {
         return DefaultJmsListenerContainerFactory().apply {
             setSubscriptionDurable(true)
             setSubscriptionShared(true)
             setPubSubDomain(true)
             setConnectionFactory(factory)
+            setMessageConverter(converter)
             setConcurrency(props.concurrency)
         }
     }

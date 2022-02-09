@@ -2,10 +2,10 @@ package manager.task.tasks.configuration.jms
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.context.annotation.Configuration
-import org.springframework.context.annotation.Primary
+
 
 @Configuration
-@ConfigurationProperties("myjms")
+@ConfigurationProperties("jms")
 class ArtemisConfigurationProperties {
     lateinit var url: String
     lateinit var user: String

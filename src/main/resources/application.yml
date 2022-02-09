@@ -12,8 +12,11 @@ spring:
     password: psql
     change-log: "classpath:liquibase/changelog.yml"
 
-myjms:
+jms:
   url: "tcp://localhost:61616"
   user: "input"
   password: "input"
   concurrency: "1-1"
+
+application:
+  name: "TASKSSERVICE"

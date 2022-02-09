@@ -23,19 +23,4 @@ databaseChangeLog:
                   type: text
                   constraints:
                     nulable: false
-              - column:
-                  name: creationDate
-                  type: timestamp
-                  constraints:
-                    nulable: false
-              - column:
-                  name: expiredDate
-                  type: timestamp
-                  constraints:
-                    nulable: false
-              - column:
-                  name: finishDate
-                  type: timestamp
-                  constraints:
-                    nulable: true
 

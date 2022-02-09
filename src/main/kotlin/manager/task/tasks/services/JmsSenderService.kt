@@ -17,9 +17,9 @@ class JmsSenderService(
         topicJmsTemplate.convertAndSend(queue, message)
     }
 
-    fun sendMulticastMessage(queue: String, message: Any, map: Map<String, String>): Unit {
+    fun sendMulticastMessage(queue: String, message: Any, headers: Map<String, String>): Unit {
         topicJmsTemplate.convertAndSend(queue, message, MessagePostProcessor {
-            map.entries.forEach { entity -> it.setStringProperty(entity.key, entity.value) }
+            headers.entries.forEach { entity -> it.setStringProperty(entity.key, entity.value) }
             return@MessagePostProcessor it
         })
     }
@@ -28,9 +28,9 @@ class JmsSenderService(
         topicJmsTemplate.convertAndSend(queue, message)
     }
 
-    fun sendAnycastMessage(queue: String, message: Any, map: Map<String, String>): Unit {
+    fun sendAnycastMessage(queue: String, message: Any, headers: Map<String, String>): Unit {
         topicJmsTemplate.convertAndSend(queue, message, MessagePostProcessor {
-            map.entries.forEach { entity -> it.setStringProperty(entity.key, entity.value) }
+            headers.entries.forEach { entity -> it.setStringProperty(entity.key, entity.value) }
             return@MessagePostProcessor it
         })
     }
