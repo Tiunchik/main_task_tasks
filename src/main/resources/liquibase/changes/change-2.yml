@@ -1,0 +1,38 @@
+databaseChangeLog:
+  - changeSet:
+      id: CREATE-2-1
+      author: Tiunchik
+      changes:
+        - createTable:
+            tableName: task_user_relations
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: task_id
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: int
+                  constraints:
+                    nulable: false
+  - changeSet:
+      id: CREATE-2-2
+      author: Tiunchik
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: task_id
+            baseTableName: task_user_relations
+            constraintName: task_id_foreign_key
+            deferrable: false
+            initiallyDeferred: false
+            referencedColumnNames: id
+            referencedTableName: task
+

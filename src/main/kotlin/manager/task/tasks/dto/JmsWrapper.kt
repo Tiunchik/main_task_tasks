@@ -1,9 +1,8 @@
 package manager.task.tasks.dto
 
-import com.fasterxml.jackson.databind.JsonNode
 
-data class JmsWrapper(
+data class JmsWrapper<T>(
     val version: String,
     val event: String,
-    val payload: Any
+    val payload: T
 )

@@ -1,11 +1,12 @@
-package manager.task.tasks.jms
+package manager.task.tasks.jmslisteners
 
 
-import manager.task.tasks.services.QUEUE_HEADER
-import manager.task.tasks.services.QUEUE_NAME
 import org.springframework.jms.annotation.JmsListener
 import org.springframework.stereotype.Service
 import javax.jms.Message
+
+const val QUEUE_NAME = "INT-MY-ADDRESS"
+const val QUEUE_HEADER = "FILTER"
 
 @Service
 class BroadcastEventListener {
@@ -25,7 +26,7 @@ class BroadcastEventListener {
         destination = QUEUE_NAME,
         containerFactory = "artemisJmsListenerContainerFactory",
         subscription = "\${application.name}",
-        selector = "$QUEUE_HEADER in ('\${application.name}')"
+        selector = "$QUEUE_HEADER in ('ALL', '\${application.name}')"
     )
     fun onMessage(message: Message): Unit {
         println("Receive message from listener - ${message.getBody(String::class.java)}")

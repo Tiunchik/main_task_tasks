@@ -1,3 +1,7 @@
 databaseChangeLog:
   - include:
       file: "liquibase/changes/change-1.yml"
+  - include:
+      file: "liquibase/changes/change-2.yml"
+  - include:
+      file: "liquibase/changes/change-3.yml"

@@ -4,13 +4,13 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import manager.task.tasks.domains.Task
 import manager.task.tasks.dto.JmsWrapper
 import manager.task.tasks.dto.toTaskDto
+import manager.task.tasks.jmslisteners.QUEUE_HEADER
+import manager.task.tasks.jmslisteners.QUEUE_NAME
 import manager.task.tasks.repositories.TasksRepository
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Flux
 
-const val QUEUE_NAME = "INT-MY-ADDRESS"
-const val QUEUE_HEADER = "FILTER"
 
 @Service
 class TaskCrudServices(

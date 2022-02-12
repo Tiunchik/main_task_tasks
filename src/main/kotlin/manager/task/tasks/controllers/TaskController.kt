@@ -18,10 +18,10 @@ class TaskController(
     @GetMapping("/{id}")
     fun getTask(@PathVariable("id") id: Long): Mono<Task> = taskCrudServices.getTask(id)
 
-    @PutMapping
+    @PostMapping
     fun saveTask(@RequestBody task: Task): Mono<Task> = taskCrudServices.saveTask(task);
 
-    @PostMapping
+    @PutMapping
     fun updateTask(@RequestBody task: Task): Mono<Task> = taskCrudServices.updateTask(task)
 
     @DeleteMapping("/{id}")
