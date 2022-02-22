@@ -8,6 +8,7 @@ import reactor.core.publisher.Mono
 
 @RestController
 @RequestMapping("/api/v1/tasks")
+@CrossOrigin(origins = ["http://localhost:3000"])
 class TaskController(
     private val taskCrudServices: TaskCrudServices
 ) {
