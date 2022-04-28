@@ -2,17 +2,14 @@ server:
   port: 8080
 
 spring:
-  r2dbc:
-    url: "r2dbc:postgresql://localhost:5432/tasks"
-    username: psql
-    password: psql
-
   liquibase:
     enabled: true
-    url: "jdbc:postgresql://localhost:5432/tasks"
-    user: psql
-    password: psql
     change-log: "classpath:liquibase/changelog.yml"
+
+  artemis:
+    mode: embedded
+    user: "input"
+    password: "input"
 
 jms:
   url: "tcp://localhost:61616"

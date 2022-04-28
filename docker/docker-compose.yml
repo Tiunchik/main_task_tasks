@@ -3,7 +3,10 @@ version: '3.5'
 services:
   psql:
     container_name: tasks-postgress
-    image: postgres:13.5-alpine
+    image: postgres:13.6-alpine
+    restart: no
+    volumes:
+      - ./start-db-scripts:/docker-entrypoint-initdb.d
     environment:
       POSTGRES_USER: psql
       POSTGRES_PASSWORD: psql
