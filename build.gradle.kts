@@ -40,6 +40,8 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
+    // https://github.com/MicroUtils/kotlin-logging
+    implementation("io.github.microutils:kotlin-logging:1.12.5")
 
 
     developmentOnly("org.springframework.boot:spring-boot-devtools")

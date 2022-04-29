@@ -10,8 +10,6 @@ import manager.task.tasks.repositories.TasksRepository
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Flux
-import java.io.IOException
-
 
 @Service
 class TaskCrudServices(
@@ -43,16 +41,17 @@ class TaskCrudServices(
             sendCrudServiceBroadcastMessage("DELETE", Task(id = id))
         }
 
+
     private fun sendCrudServiceBroadcastMessage(operation: String, task: Task): Unit {
-        val wrappedDto = JmsWrapper(
-            version = "v1",
-            event = operation,
-            payload = task.toTaskDto()
-        )
         jmsSenderService.sendMulticastMessage(
             queue = QUEUE_NAME,
-            message = wrappedDto,
-            headers = mapOf(QUEUE_HEADER to appName))
+            message = JmsWrapper(
+                version = "v1",
+                event = operation,
+                payload = task.toTaskDto()
+            ),
+            headers = mapOf(QUEUE_HEADER to appName)
+        )
     }
 }
 

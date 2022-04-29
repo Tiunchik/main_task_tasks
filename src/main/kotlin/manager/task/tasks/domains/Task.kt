@@ -4,7 +4,7 @@ import org.springframework.data.annotation.Id
 import org.springframework.data.relational.core.mapping.Table
 import java.time.LocalDateTime
 
-const val STANDART_DAY_PENDING = 5L;
+const val STANDARD_DAY_PENDING = 5L;
 
 @Table
 data class Task (

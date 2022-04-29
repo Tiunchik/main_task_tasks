@@ -20,7 +20,6 @@ class BroadcastEventListener {
      * containerFactory = "factory",
      * concurrency = "1-2")
      */
-
     @JmsListener(
         id = "\${application.name}",
         destination = QUEUE_NAME,
