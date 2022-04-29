@@ -1,0 +1,14 @@
+databaseChangeLog:
+  - changeSet:
+      id: CREATE-3-1
+      author: Tiunchik
+      changes:
+      - addUniqueConstraint:
+          columnNames: task_id, user_id
+          constraintName: const_name
+          deferrable: true
+          disabled: true
+          schemaName: public
+          tableName: task_user_relations
+          validate: true
+

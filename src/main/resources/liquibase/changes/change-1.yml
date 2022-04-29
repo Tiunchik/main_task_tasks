@@ -1,0 +1,26 @@
+databaseChangeLog:
+  - changeSet:
+      id: CREATE-1
+      author: Tiunchik
+      changes:
+        - createTable:
+            tableName: task
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(100)
+                  constraints:
+                    nulable: false
+              - column:
+                  name: description
+                  type: text
+                  constraints:
+                    nulable: false
+

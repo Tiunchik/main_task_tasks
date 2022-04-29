@@ -1,10 +1,10 @@
 version: '3.5'
 
 services:
+
   psql:
-    container_name: tasks-postgress
-    image: postgres:13.6-alpine
-    restart: no
+    container_name: "tasks-postgress"
+    image: "postgres:13.6-alpine"
     volumes:
       - ./start-db-scripts:/docker-entrypoint-initdb.d
     environment:
@@ -12,3 +12,21 @@ services:
       POSTGRES_PASSWORD: psql
     ports:
       - "5432:5432"
+
+#  artemis:
+#    container_name: "task-artemis"
+#    image: "artemis-debian"
+#    environment:
+#      ARTEMIS_USER: "input"
+#      ARTEMIS_PASSWORD: "input"
+#    ports:
+#      - "61616:61616"
+#      - "8161:8161"
+
+  test:
+    container_name: "java_test"
+    build:
+      context: "."
+      dockerfile: "./artemis/Dockerfile"
+
+
