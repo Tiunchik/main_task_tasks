@@ -13,20 +13,17 @@ services:
     ports:
       - "5432:5432"
 
-#  artemis:
-#    container_name: "task-artemis"
-#    image: "artemis-debian"
-#    environment:
-#      ARTEMIS_USER: "input"
-#      ARTEMIS_PASSWORD: "input"
-#    ports:
-#      - "61616:61616"
-#      - "8161:8161"
-
-  test:
-    container_name: "java_test"
+  artemis:
+    container_name: "artemis"
     build:
       context: "."
       dockerfile: "./artemis/Dockerfile"
+    environment:
+      ARTEMIS_USER: "input"
+      ARTEMIS_PASSWORD: "input"
+    ports:
+      - "61616:61616"
+      - "8161:8161"
+
 
 
