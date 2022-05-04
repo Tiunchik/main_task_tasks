@@ -17,7 +17,7 @@ ARG CURL_OUTPUT=${BASE_TMPDIR}/${ARTEMIS_VERSION}/${ARTEMIS_DIST_FILE_NAME}
 RUN apk update \
     && apk add curl \
     && mkdir -p ${BASE_TMPDIR}/${ARTEMIS_VERSION} \
-    && touch ${BASE_TMPDIR}/${ARTEMIS_VERSION}/${ARTEMIS_DIST_FILE_NAME}
+    && touch ${CURL_OUTPUT}
 
 # Load tag file with artemis in two curl requests
 RUN curl --progress-bar $(curl -s https://www.apache.org/dyn/closer.cgi\?preferred=true)activemq/activemq-artemis/${ARTEMIS_VERSION}/${ARTEMIS_DIST_FILE_NAME} --output ${CURL_OUTPUT}

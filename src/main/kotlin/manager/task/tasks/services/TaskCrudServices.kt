@@ -9,9 +9,15 @@ import manager.task.tasks.jmslisteners.QUEUE_NAME
 import manager.task.tasks.repositories.TasksRepository
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import reactor.core.publisher.Flux
 
+/**
+ * https://docs.spring.io/spring-data/r2dbc/docs/current/reference/html/#project-metadata - про аудит в r2dbc
+ */
+
 @Service
+@Transactional
 class TaskCrudServices(
     private val taskRepository: TasksRepository,
     private val jmsSenderService: JmsSenderService,
