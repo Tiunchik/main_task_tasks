@@ -2,13 +2,17 @@ package manager.task.tasks.configuration.jms
 
 import org.apache.activemq.artemis.jms.client.ActiveMQConnectionFactory
 import org.springframework.beans.factory.annotation.Qualifier
+import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.context.annotation.Profile
 import org.springframework.jms.config.DefaultJmsListenerContainerFactory
 import org.springframework.jms.core.JmsTemplate
 import org.springframework.jms.support.converter.MessageConverter
 
 @Configuration
+@Profile("!test")
 class ArtemisConfiguration(
     @Qualifier("artemisConfigurationProperties") private val props: ArtemisConfigurationProperties
 ) {

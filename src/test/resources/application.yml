@@ -2,6 +2,7 @@ server:
   port: 8080
 
 spring:
+
   liquibase:
     enabled: true
     change-log: "classpath:liquibase/changelog.yml"
@@ -10,6 +11,9 @@ spring:
     mode: embedded
     user: "input"
     password: "input"
+    broker-url: "tcp://localhost:61616"
+    embedded:
+      enabled: true
 
 jms:
   url: "tcp://localhost:61616"
