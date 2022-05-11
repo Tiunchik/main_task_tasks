@@ -42,6 +42,10 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
     // https://github.com/MicroUtils/kotlin-logging
     implementation("io.github.microutils:kotlin-logging:1.12.5")
+    // todo - move with journaling
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-aop
+    implementation("org.springframework.boot:spring-boot-starter-aop:2.6.7")
+
 
 
     developmentOnly("org.springframework.boot:spring-boot-devtools")

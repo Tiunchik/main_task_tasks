@@ -23,3 +23,7 @@ jms:
 
 application:
   name: "TASKSSERVICE"
+
+# todo - move with journaling
+journaling:
+  enable: true
