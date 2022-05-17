@@ -7,7 +7,7 @@ ENV INPUT_OPTION true
 ENV EXTRA_ARGS --http-host 0.0.0.0 --relax-jolokia
 
 ENV BASE_TMPDIR /opt/artemis
-ENV ARTEMIS_VERSION 2.21.0
+ENV ARTEMIS_VERSION 2.22.0
 
 ARG ARTEMIS_DIST_FILE_NAME=apache-artemis-${ARTEMIS_VERSION}-bin.tar.gz
 ARG ARTEMIS_DIST=${BASE_TMPDIR}/${ARTEMIS_VERSION}
@@ -19,8 +19,11 @@ RUN apk update \
     && mkdir -p ${BASE_TMPDIR}/${ARTEMIS_VERSION} \
     && touch ${CURL_OUTPUT}
 
-# Load tag file with artemis in two curl requests
-RUN curl --progress-bar $(curl -s https://www.apache.org/dyn/closer.cgi\?preferred=true)activemq/activemq-artemis/${ARTEMIS_VERSION}/${ARTEMIS_DIST_FILE_NAME} --output ${CURL_OUTPUT}
+# Load tag file with artemis, to get host url - use follow curl request
+# $(curl -s https://www.apache.org/dyn/closer.cgi\?preferred=true)
+RUN curl --progress-bar http://dlcdn.apache.org/activemq/activemq-artemis/${ARTEMIS_VERSION}/${ARTEMIS_DIST_FILE_NAME} --output ${CURL_OUTPUT}
+
+RUN cat ${CURL_OUTPUT}
 
 # Unarchive tar file to ARTEMIS_DIST
 RUN apk add tar \
